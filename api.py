@@ -257,7 +257,7 @@ dateAddOnestr=dateAddOne.strftime('%Y-%m-%d')
 dateMinusOnestr=dateMinusOne.strftime('%Y-%m-%d')
 #print(dateWantedstr)
 
-fname = Path(dateMinusOnestr+'_result.json')
+fname = Path('./savedData/'+dateMinusOnestr+'_result.json')
 if fname.is_file():
     with open(fname) as json_file:
         yesterdayData = json.load(json_file)
@@ -473,10 +473,10 @@ for singleTrail in dailySave:
 
 # 把每次處裡好的api資料存檔
 if CWBapiNewDate == todaystr:
-    with open(todaystr+'_result.json', 'w') as fp:
+    with open('./savedData/'+todaystr+'_result.json', 'w') as fp:
         json.dump(dailySave, fp)
 elif CWBapiNewDate == dateAddOnestr:
-    with open(dateAddOnestr+'_result.json', 'w') as fp:
+    with open('./savedData/'+dateAddOnestr+'_result.json', 'w') as fp:
         json.dump(dailySave, fp)
 
 
@@ -665,7 +665,7 @@ for trail in trails:
 
 preFix=dateList[0][:13]
 
-with open(preFix+'_3hr_result.json', 'w') as fp:
+with open('./savedData/'+preFix+'_3hr_result.json', 'w') as fp:
         json.dump(each3hrData, fp)
 
 @app.route('/mountain_trail/weather3hr', methods=['GET'])
