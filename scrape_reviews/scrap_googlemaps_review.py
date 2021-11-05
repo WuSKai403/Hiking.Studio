@@ -10,6 +10,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 from lxml import etree
 import requests
 from selenium import webdriver
@@ -142,6 +143,16 @@ def write_csv(location_data,file_name,related_words):
 
 
 #path = r"C:\Users\USER\Downloads\geckodriver.exe"#driver path
+
+    
+
+options = Options()
+#options.add_argument("--no-sandbox") #bypass OS security model
+options.add_argument("--disable-notifications")
+options.add_argument('--headless')
+#options.add_argument('--disable-dev-shm-usage')
+#options.add_argument('--log-level=3') #not showing the version check logging on screen by ChromeDriverManager
+
 error_list = []
 for i in range(0,10):
     key_words = id_keywords(i)[1]
@@ -152,7 +163,8 @@ for i in range(0,10):
                 file_name = str(trail_id)+"_"+str(key_word)+'.csv'
                 print("=========================================================================")
                 print("processing {}".format(file_name))
-                driver = Firefox(executable_path = path)
+                print(os.getcwd() + '/geckodriver')
+                driver = Firefox(executable_path=os.getcwd() + '/geckodriver',options=options)
                 driver.get('https://www.google.com.tw/maps/@24.9561947,121.1824813,15z') 
                 search_place = WebDriverWait(driver, 10).until(
                     EC.presence_of_element_located((By.ID, 'searchboxinput')))

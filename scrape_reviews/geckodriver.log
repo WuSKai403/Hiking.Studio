@@ -1,0 +1,34 @@
+1626410156444	geckodriver	INFO	Listening on 127.0.0.1:52504
+1626410156451	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilepS4FyR"
+MoTTY X11 proxy: Authorisation not recognised
+Failed to connect to Mir: Failed to connect to server socket: No such file or directory
+Unable to init server: Broadway display type not supported: localhost:12.0
+Error: cannot open display: localhost:12.0
+1626410406968	geckodriver	INFO	Listening on 127.0.0.1:59473
+1626410432168	geckodriver	INFO	Listening on 127.0.0.1:52985
+1626410432174	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileTc5ECf"
+MoTTY X11 proxy: Authorisation not recognised
+Failed to connect to Mir: Failed to connect to server socket: No such file or directory
+Unable to init server: Broadway display type not supported: localhost:12.0
+Error: cannot open display: localhost:12.0
+1626410496588	geckodriver	INFO	Listening on 127.0.0.1:38781
+1626410496593	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileOc2dsH"
+MoTTY X11 proxy: Authorisation not recognised
+Failed to connect to Mir: Failed to connect to server socket: No such file or directory
+Unable to init server: Broadway display type not supported: localhost:12.0
+Error: cannot open display: localhost:12.0
+1626410524962	geckodriver	INFO	Listening on 127.0.0.1:34546
+1626410524969	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilegIiCQ0"
+MoTTY X11 proxy: Authorisation not recognised
+Failed to connect to Mir: Failed to connect to server socket: No such file or directory
+Unable to init server: Broadway display type not supported: localhost:12.0
+Error: cannot open display: localhost:12.0
+1626410649201	geckodriver	INFO	Listening on 127.0.0.1:50623
+1626410650207	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGrf0oW"
+MoTTY X11 proxy: Authorisation not recognised
+Failed to connect to Mir: Failed to connect to server socket: No such file or directory
+Unable to init server: Broadway display type not supported: localhost:12.0
+Error: cannot open display: localhost:12.0
+1626412182505	geckodriver	INFO	Listening on 127.0.0.1:42836
+1626412182514	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileIgSeTJ"
+Error: no DISPLAY environment variable specified
