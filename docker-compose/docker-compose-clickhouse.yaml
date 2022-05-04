@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  clickhouse_server:
+    image: yandex/clickhouse-server:21.3.20.1
+    ports:
+      - "8123:8123"
+    volumes:
+      - /opt/clickhouse/db:/var/lib/clickhouse
+    networks:
+      - ch_ntw
+
+  clickhouse_client:
+    image: yandex/clickhouse-client:21.3.20.1
+    entrypoint:
+      - /bin/sleep
+    command:
+      - infinity
+    networks:
+      - ch_ntw
+
+networks:
+  clickhouse_ntw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.222.1.0/24
