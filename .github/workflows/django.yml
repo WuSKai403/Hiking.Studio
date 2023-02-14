@@ -14,7 +14,10 @@ jobs:
       matrix:
         python-version: ["3.9"]
     env:
-      CWB_API_KEY: CWB-AF41CC67-3954-445C-B335-9268B25B08F9
+      CWB_API_KEY: ${{ secrets.CWB_API_KEY }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DEBUG: true
+
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
