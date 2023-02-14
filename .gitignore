@@ -1,0 +1,30 @@
+.scannerwork/
+.vscode/
+*.ipynb
+localtest*.py
+*.DS_Store
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Scrapy stuff:
+.scrapy
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
