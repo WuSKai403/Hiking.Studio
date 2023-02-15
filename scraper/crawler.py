@@ -4,20 +4,30 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+import requests
 import time
+url = 'https://www.ettoday.net/news/news-list.html'
+# 假的 headers 資訊
+headers = {'user-agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'}
+# 加入 headers 資訊
+web = requests.get(url, headers=headers)
+web.encoding = 'utf8'
+# 假的 headers 資訊
+user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.3 Safari/605.1.15"
 
 
 
-# options = Options()
-# options.add_argument("start-maximized")
-# options.add_argument("disable-infobars")
-# options.add_argument("--disable-extensions")
-# options.add_argument("--disable-gpu")
-# options.add_argument("--no-sandbox")
+options = Options()
+options.add_argument("start-maximized")
+options.add_argument("disable-infobars")
+options.add_argument("--disable-extensions")
+options.add_argument("--disable-gpu")
+options.add_argument("--no-sandbox")
+# 加入 headers 資訊
+options.add_argument('--user-agent=%s' % user_agent)
 
-# browser = webdriver.Chrome(chrome_options=options ,executable_path='./chromedriver')
-browser = webdriver.Chrome(executable_path='./chromedriver')
+browser = webdriver.Chrome(chrome_options=options ,executable_path='./chromedriver')
+# browser = webdriver.Chrome(executable_path='./chromedriver')
 browser.get("https://www.google.com/maps/")
 
 
@@ -43,14 +53,21 @@ def find_review_link():
     return int(total_num)
 
 
-def find_latest_sorting_tag():
+def find_sorting_tag():
     sorting_tag = browser.find_element(By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[7]/div[2]/button/span')
     sorting_tag.click()
+    time.sleep(1.5)
     print("click sorting tag")
-    latest_link= browser.find_element(By.XPATH, '//*[@id="action-menu"]/div[2]')
+  
+
+def find_latest_tag():
+    latest_link= browser.find_element(By.XPATH, '//*[@id="action-menu"]/div[2]') 
     latest_link.click()
-    print("click latest tag")
-    # //*[@id="action-menu"]/div[2]
+    time.sleep(0.5)
+    print("click latest tag") 
+
+## #action-menu > div:nth-child(2) css
+#//*[@id="action-menu"]/div[2] xpath
 
 def scroll_data(counter):
     last_height = browser.execute_script("return document.body.scrollHeight")
@@ -145,7 +162,7 @@ def test2():
     SCROLL_STEP = 1000
 
     # 定位到滾動區域的元素
-    scroll_area = browser.find_element_by_xpath('//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]')
+    scroll_area = browser.find_element(By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]')
 
     # 獲取網頁內容的高度
     last_height = browser.execute_script("return arguments[0].scrollHeight", scroll_area)
@@ -176,17 +193,18 @@ def test2():
 
 if __name__ == "__main__":
     print('start')
-    time.sleep(1.5)
+    time.sleep(2)
 
     search_place()
     num = find_review_link()
     print(num)
     time.sleep(3)
-    find_latest_sorting_tag()
- 
+    find_sorting_tag()
+    find_latest_tag()
     # scroll_data2(int(int(num)/10)+1)
     # scroll_too()
-    test2()
+    # test2()
+    
 
     # get_data()
     
