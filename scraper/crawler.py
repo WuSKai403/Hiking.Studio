@@ -71,7 +71,7 @@ def find_latest_tag():
 
 def scroll_data(counter):
     last_height = browser.execute_script("return document.body.scrollHeight")
-    print('scrolling... ', last_height)
+    print('scrolling... ',last_height)
 
     for _i in range(counter):
         scrollable_div = browser.find_element( By.XPATH,'//div[@class="lXJj5c Hk4XGb"]')
@@ -86,79 +86,28 @@ def scroll_data(counter):
         time.sleep(3)
 
 
-def scroll_the_page():
-		try:
-			WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "section-layout-root")))
-			pause_time = 2
-			max_count = 5
-			x = 0
+def scroll_data_ok(counter):
+       # 設定等待時間和滾動步長
+    WAIT_TIME = 1
+    SCROLL_STEP = 1000
+    scroll_area = browser.find_element(By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]')
+    last_height = browser.execute_script("return arguments[0].scrollHeight", scroll_area)
+    print('scrolling... ',last_height,SCROLL_STEP,last_height/SCROLL_STEP)
 
-			while(x<max_count):
-				scrollable_div = browser.find_element_by_css_selector('div.section-layout.section-scrollbox.scrollable-y.scrollable-show')
-				try:
-					browser.execute_script('arguments[0].scrollTop = arguments[0].scrollHeight', scrollable_div)
-				except:
-					pass
-				time.sleep(pause_time)
-				x=x+1
-		except:
-			browser.quit()
-
-
-
-def scroll_data2(counter):
-    last_height = browser.execute_script("return document.body.scrollHeight")
-    print('scrolling... ', last_height)
+    # last_height = browser.execute_script("return document.body.scrollHeight")
+    print('scrolling... ',last_height)
 
     for _i in range(counter):
-        h = browser.execute_script("return document.body.scrollHeight")
-        ele = browser.find_element( By.XPATH,'//*[@id="QA0Szd"]')
-        browser.execute_script('arguments[0].scrollBy(0, 2000);', ele) 
-        # browser.execute_script('arguments[0].scrollTop = arguments[0].scrollHeight', scrollable_div)
-        print("AAAA",_i,"/",counter,h)
-        # get_data()
-        time.sleep(3)
+        browser.execute_script('arguments[0].scrollBy(0, arguments[1]);', scroll_area, SCROLL_STEP)
+        time.sleep(WAIT_TIME) # 建議降速 , 太快會被ban
+        WebDriverWait(browser, WAIT_TIME).until(EC.presence_of_element_located((By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[last()]')))
+        print("AAAA",_i,"/",counter,last_height)
 
-def scroll_too():
-    last_height = browser.execute_script("return document.body.scrollHeight")
-    SCROLL_PAUSE_TIME = 5
-
-    number = 0
-
-    while True:
-        number = number+1
-
-    # Scroll down to bottom
-        # ele = browser.find_element( By.XPATH,'//*[@id="QA0Szd"]') 
-        ele = browser.find_element( By.XPATH,'//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]')
-        browser.execute_script('arguments[0].scrollBy(0, 2000);', ele)
-
-    # Wait to load page
-
-        time.sleep(2)
-
-    # Calculate new scroll height and compare with last scroll height
-        print(f'last height: {last_height}')
-        #//*[@id="QA0Szd"]
-        # ele = browser.find_element( By.XPATH,'//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]')
-        ele = browser.find_element( By.XPATH,'//*[@id="QA0Szd"]')
-        new_height = browser.execute_script("return arguments[0].scrollHeight", ele)
-
-        print(f'new height: {new_height}')
-
-        if number == 5:
-            break
-
-        if new_height == last_height:
-            break
-
-        print('cont')
-        last_height = new_height
 
 def test2():
-
+    print("test2 ---- ")
     # 設定等待時間和滾動步長
-    WAIT_TIME = 10
+    WAIT_TIME = 3
     SCROLL_STEP = 1000
 
     # 定位到滾動區域的元素
@@ -166,6 +115,7 @@ def test2():
 
     # 獲取網頁內容的高度
     last_height = browser.execute_script("return arguments[0].scrollHeight", scroll_area)
+    print('scrolling... ',last_height,SCROLL_STEP,last_height/SCROLL_STEP)
 
     # 持續滾動，直到滾動到頁面底部
     while True:
@@ -174,16 +124,19 @@ def test2():
 
         try:
             # 等待頁面內容加載完畢
+            print("loading...")
             WebDriverWait(browser, WAIT_TIME).until(EC.presence_of_element_located((By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[last()]')))
         except:
             # 如果超時，則停止滾動
+            print("Timeout...")
             break
 
         # 獲取滾動後的網頁內容高度
         new_height = browser.execute_script("return arguments[0].scrollHeight", scroll_area)
-
+        print(new_height)
         # 如果滾動到頁面底部，則停止滾動
         if new_height == last_height:
+            print(" SAME",)
             break
 
         # 更新 last_height
@@ -193,7 +146,7 @@ def test2():
 
 if __name__ == "__main__":
     print('start')
-    time.sleep(2)
+    time.sleep(5)
 
     search_place()
     num = find_review_link()
@@ -201,12 +154,9 @@ if __name__ == "__main__":
     time.sleep(3)
     find_sorting_tag()
     find_latest_tag()
-    # scroll_data2(int(int(num)/10)+1)
-    # scroll_too()
-    # test2()
-    
+    scroll_data_ok(num)
+    # test2()    
 
-    # get_data()
     
     time.sleep(30) 
 
