@@ -63,7 +63,7 @@ def find_sorting_tag():
 def find_latest_tag():
     latest_link= browser.find_element(By.XPATH, '//*[@id="action-menu"]/div[2]') 
     latest_link.click()
-    time.sleep(0.5)
+    time.sleep(1.5)
     print("click latest tag") 
 
 ## #action-menu > div:nth-child(2) css
@@ -87,21 +87,27 @@ def scroll_data(counter):
 
 
 def scroll_data_ok(counter):
-       # 設定等待時間和滾動步長
-    WAIT_TIME = 1
-    SCROLL_STEP = 1000
+
+    # 設定等待時間和動態滾動步長
+    WAIT_TIME = 2
     scroll_area = browser.find_element(By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]')
     last_height = browser.execute_script("return arguments[0].scrollHeight", scroll_area)
-    print('scrolling... ',last_height,SCROLL_STEP,last_height/SCROLL_STEP)
-
-    # last_height = browser.execute_script("return document.body.scrollHeight")
-    print('scrolling... ',last_height)
-
+    SCROLL_STEP = last_height/4 #滾輪滾四次
+    reset_num = int(last_height/SCROLL_STEP)
+    print('scrolling... ',"last_height : ",last_height, "SCROLL_STEP:",SCROLL_STEP,"reset_num:",reset_num)
+    
     for _i in range(counter):
         browser.execute_script('arguments[0].scrollBy(0, arguments[1]);', scroll_area, SCROLL_STEP)
-        time.sleep(WAIT_TIME) # 建議降速 , 太快會被ban
+        i = _i+1
+        tmp =   i % reset_num
+        if(tmp== 0):
+            print("Loading...." , tmp, reset_num , i)
+            time.sleep(WAIT_TIME) # Loading ....建議降速 , 太快會被ban
+        else:
+            time.sleep(0.2) # Scrooll.... 
+
+
         WebDriverWait(browser, WAIT_TIME).until(EC.presence_of_element_located((By.XPATH, '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[last()]')))
-        print("AAAA",_i,"/",counter,last_height)
 
 
 def test2():
