@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "weather_info",
+    "scraper",
 ]
 
 MIDDLEWARE = [
@@ -103,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = 'Asia/Taipei'
 
 USE_I18N = True
 
@@ -139,20 +140,20 @@ DEBUG = env('DEBUG')
 # exception if SECRET_KEY not in os.environ
 SECRET_KEY = env('SECRET_KEY')
 
-# Parse database connection url strings
-# like psql://user:pass@127.0.0.1:8458/db
+# # Parse database connection url strings
+# # like psql://user:pass@127.0.0.1:8458/db
 # DATABASES = {
-    # read os.environ['DATABASE_URL'] and raises
-    # ImproperlyConfigured exception if not found
-    #
-    # The db() method is an alias for db_url().
-    # 'default': env.db(),
+#     # read os.environ['DATABASE_URL'] and raises
+#     # ImproperlyConfigured exception if not found
+#     #
+#     # The db() method is an alias for db_url().
+#     'default': env.db(),
 
-    # read os.environ['SQLITE_URL']
-    # 'extra': env.db_url(
-        # 'SQLITE_URL',
-        # default='sqlite:////tmp/my-tmp-sqlite.db'
-    # )
+#     # read os.environ['SQLITE_URL']
+#     'extra': env.db_url(
+#         'SQLITE_URL',
+#         default='sqlite:////tmp/my-tmp-sqlite.db'
+#     )
 # }
 
 # CACHES = {

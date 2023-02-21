@@ -7,7 +7,7 @@ env = environ.Env()
 
 
 def test_get_data_from_cwb(requests_mock):
-    key = env("CWB_API_KEY")
+    key = env.str("CWB_API_KEY")
     result = {
         "cwbopendata": {
             "@xmlns": "urn:cwb:gov:tw:cwbcommon:0.1",
