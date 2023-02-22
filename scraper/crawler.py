@@ -102,6 +102,16 @@ def scroll_data_ok(counter):
         tmp =   i % reset_num
         if(tmp== 0):
             print("Loading...." , tmp, reset_num , i)
+            more_ele = browser.find_elements(By.CLASS_NAME , 'w8nwRe')
+            for list_more_ele in more_ele:
+                list_more_ele.click()
+                
+            elements = browser.find_elements(By.CLASS_NAME , 'jftiEf')
+            for data in elements:
+                    name = data.find_element(By.CLASS_NAME , 'd4r55').text
+                    text = data.find_element(By.CLASS_NAME , 'wiI7pd').text
+                    score = data.find_element(By.CLASS_NAME , 'kvMYJc').get_attribute("aria-label")
+                    print(name," , ",text," , ",score)
             time.sleep(WAIT_TIME) # Loading ....建議降速 , 太快會被ban
         else:
             time.sleep(0.2) # Scrooll.... 
