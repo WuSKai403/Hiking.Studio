@@ -32,7 +32,7 @@ browser.get("https://www.google.com/maps/")
 
 
 def search_place():
-    Place = browser.find_element(By.CLASS_NAME,'tactile-searchbox-input')
+    Place = browser.find_element(By.CLASS_NAME,'searchboxinput')
     Place.send_keys("金面山親山步道")
     submit = browser.find_element(By.ID,"searchbox-searchbutton")
     print(submit.text)
