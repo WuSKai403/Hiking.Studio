@@ -51,10 +51,15 @@ def search_place_data(place_name):
 
     # 有資料
     place_list = browser.find_elements(By.CLASS_NAME, 'hfpxzc')
-    print(place_list)
-    for item in place_list:
-        # item.find_element()
-        print(item.text)
+
+    print(" start ")
+    print(len(place_list))
+    for i in range(len(place_list)):
+        print(i, place_list[i].get_attribute('aria-label') , place_list[i].get_attribute('href'))
+    # //*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[1]/div[3]/div/a
+    # for item in place_list:
+        # t = item.find_element(By.XPATH,'//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[1]/div[3]/div/div[2]')      
+        # print(t.get_attribute('aria-label'))
     # 找不到資料 
     # text = browser.find_element(By.CLASS_NAME, 'Q2vNVc')
     # print(text.text)
@@ -107,7 +112,7 @@ if __name__ == "__main__":
     #     search_place_no_data(listReport[1613][1])
 
     
-    for i in range(30):
+    for i in range(5):
         print("index" , i)
         if i!=0:
             try:
