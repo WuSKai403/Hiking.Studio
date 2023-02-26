@@ -41,7 +41,7 @@ browser.get("https://www.google.com/maps/")
 def search_place_data(place_name):
     print("init data")
     Place = browser.find_element(By.CLASS_NAME,'searchboxinput')
-    print(place_name)
+    print('search_name :',place_name)
     Place.send_keys("")
     Place.send_keys(place_name)
     submit = browser.find_element(By.ID,"searchbox-searchbutton")
@@ -51,12 +51,35 @@ def search_place_data(place_name):
 
     # 有資料
     place_list = browser.find_elements(By.CLASS_NAME, 'hfpxzc')
+    # print('span: ', browser.find_element(By.CLASS_NAME ,'ah5Ghc').text)
 
     print(" start ")
-    print(len(place_list))
+    # print(len(place_list))
     for i in range(len(place_list)):
-        print(i, place_list[i].get_attribute('aria-label') , place_list[i].get_attribute('href'))
-    # //*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[1]/div[3]/div/a
+        print(i,'name: ', place_list[i].get_attribute('aria-label') )
+        print(i,'source_url: ' ,place_list[i].get_attribute('href'))
+        print(i,'span: ' ,place_list[i].get_attribute('title'))
+        print(i,'test: ' , place_list[i].find_element(By.CLASS_NAME, 'lI9IFe'))
+
+
+    # address 
+    place_list_a = browser.find_elements(By.CLASS_NAME, 'lI9IFe') 
+    print('len  = ',len(place_list_a) )
+    for i in range(len(place_list_a)): 
+        tmp = place_list_a[i].find_elements(By.CLASS_NAME, 'W4Efsd')
+        for j in range(len(tmp)):
+            print(place_list_a[i],' index =',tmp[j].text)
+
+
+    #description
+    place_list2 = browser.find_elements(By.CLASS_NAME, 'qty3Ue')
+    print('len 1 = ',len(place_list2) )
+    for i in range(len(place_list2)): 
+    
+        tmp = place_list2[i].find_elements(By.CLASS_NAME, 'ah5Ghc')
+        for j in range(len(tmp)):
+            print(tmp[j].text)
+    
     # for item in place_list:
         # t = item.find_element(By.XPATH,'//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[1]/div[3]/div/div[2]')      
         # print(t.get_attribute('aria-label'))
