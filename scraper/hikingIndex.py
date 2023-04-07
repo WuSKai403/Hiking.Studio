@@ -26,5 +26,5 @@ if __name__ == "__main__":
 
     for id in range(1750):
         if check_req_status(id)==True:
-            print(hiking_index_url+str(id)) 
-            # Attraction.source_url = hiking_index_url+id 
+            print(hiking_index_url+str(id))
+            # Attraction.source_url = hiking_index_url+id

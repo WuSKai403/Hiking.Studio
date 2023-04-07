@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["104.198.4.193", "www.hikingweatherguide.com"]
 
 
 # Application definition
@@ -34,8 +34,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "weather_info",
-    "scraper",
+    "weather_info.apps.WeatherInfoConfig",
+    "scraper.apps.ScraperConfig",
 ]
 
 MIDDLEWARE = [
@@ -139,6 +139,9 @@ DEBUG = env('DEBUG')
 # Raises Django's ImproperlyConfigured
 # exception if SECRET_KEY not in os.environ
 SECRET_KEY = env('SECRET_KEY')
+
+import django
+django.setup()
 
 # # Parse database connection url strings
 # # like psql://user:pass@127.0.0.1:8458/db
